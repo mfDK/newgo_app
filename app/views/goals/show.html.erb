@@ -2,7 +2,9 @@
 
 <%= @goal.title %>
 <%= @goal.description %>
-<%= @goal.end_date %>
+<%= @goal.end_date.strftime("%m/%d/%Y") %>
+<%= notice %>
+<%= alert %>
 
 <%= link_to "Edit Goal" , edit_goal_path(@goal) %>
 <%= link_to "Delete Goal" , goal_path(@goal) , method: :delete %>

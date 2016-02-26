@@ -17,6 +17,8 @@ gem 'devise', '~> 3.5', '>= 3.5.6'
 gem 'omniauth', '~> 1.3', '>= 1.3.1'
 gem 'omniauth-facebook', '~> 3.0'
 gem 'omniauth-twitter', '~> 1.2', '>= 1.2.1'
+
+gem 'koala', '~> 2.2'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
