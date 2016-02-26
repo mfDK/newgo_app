@@ -17,6 +17,12 @@ class CallbacksController < Devise::OmniauthCallbacksController
 			# and redirects them to the authentication event
 
 			set_flash_message(:notice,:success,:kind => "Facebook") if is_navigational_format?
+
+			# This gets the omniauth token from the @user instance variable
+			# and sets it to a session that the user is in after sign_in
+			@auth = request.env["omniauth.auth"]
+  		@token = @auth['credentials']['token']
+  		session[:fb_session_token] = @token
 		else
 			session["devise.facebook_data"] = request.env["omniauth.auth"]
 			redirect_to new_user_registration_url

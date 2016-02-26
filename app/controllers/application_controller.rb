@@ -6,4 +6,5 @@ class ApplicationController < ActionController::Base
   # This method makes sure that a user is signed in before any actions can be
   # created or viewed 
   before_action :authenticate_user!
+
 end

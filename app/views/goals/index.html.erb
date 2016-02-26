@@ -1,2 +1,7 @@
-<h1>Goals#index</h1>
-<p>Find me in app/views/goals/index.html.erb</p>
+<h1><%= current_user.email %> Goals</h1>
+
+<% @goals.each do |goal| %>
+	<%= goal.title %>
+	<%= goal.description %>
+	<%= goal.end_date %> 
+<% end %>
