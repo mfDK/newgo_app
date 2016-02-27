@@ -19,7 +19,7 @@ class TasksController < ApplicationController
   	@task = @goal.tasks.new(task_params)
   	if @task.save
   		flash[:notice] = "Your task has been created"
-  		redirect_to goal_task_path(@goal)
+  		redirect_to goal_task_path(@goal,@task)
   	else
   		flash[:alert] = "Your Task has not been created"
   		redirect_to new_goal_task_path
