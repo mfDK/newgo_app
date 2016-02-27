@@ -1,0 +1,6 @@
+<%= link_to "New Task" , new_goal_task_path %>
+
+<% @tasks.each do |task| %>
+	<%= task.title %>
+	<%= link_to "Show" , goal_task_path(task.goal_id,task.id) %>
+<% end %>

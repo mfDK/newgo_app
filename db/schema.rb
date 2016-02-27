@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160226190143) do
+ActiveRecord::Schema.define(version: 20160227171026) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,11 +21,24 @@ ActiveRecord::Schema.define(version: 20160226190143) do
     t.text     "description"
     t.datetime "end_date"
     t.integer  "user_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.boolean  "completed",   default: false
   end
 
   add_index "goals", ["user_id"], name: "index_goals_on_user_id", using: :btree
+
+  create_table "tasks", force: :cascade do |t|
+    t.integer  "goal_id"
+    t.string   "title"
+    t.text     "description"
+    t.datetime "end_date"
+    t.boolean  "completed",   default: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  add_index "tasks", ["goal_id"], name: "index_tasks_on_goal_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -48,4 +61,5 @@ ActiveRecord::Schema.define(version: 20160226190143) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "goals", "users"
+  add_foreign_key "tasks", "goals"
 end

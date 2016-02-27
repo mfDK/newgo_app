@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
 
   helper_method :fb_post
-  helper_method :days_until
+  # helper_method :days_until
 
   def fb_post
   	@graph = Koala::Facebook::API.new(session[:fb_session_token])
