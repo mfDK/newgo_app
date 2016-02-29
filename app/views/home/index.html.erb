@@ -1,7 +1,9 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
-
-
 <%= link_to "New Goal" , new_goal_path %>
 
-<%= link_to "My Goals" , goals_path %>
+<h1 id="my-goals"> My Goals</h1>
+<% @goals.each do |goal| %>
+	<h2><%= goal.title %></h2>
+	<p><%= goal.description %></p>
+	<%= link_to "Show Goal", goal_path(goal.id) %>
+<% end %>
+

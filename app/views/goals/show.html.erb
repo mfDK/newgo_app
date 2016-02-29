@@ -1,12 +1,30 @@
-<h1>Goals for <%= current_user.email %></h1>
+<h1><%= @goal.title %></h1>
+
+<h4>There are <%= @num_tasks %> tasks for <%= @goal.title %> </h4>
+<h4>User: <%= current_user.email %> has completed <%= @complete_tasks %> tasks</h4>
+<h5><%= @left_tasks %> tasks are left</h5>
+
+<%= link_to "New Task" , new_goal_task_path(@goal) %>
 
 <%= @goal.title %>
 <%= @goal.description %>
 <%= @goal.end_date.strftime("%m/%d/%Y") %>
-
-
-<li><%= link_to "Goal Tasks" ,goal_tasks_path(@goal) %></li>
-
 <%= link_to "Edit Goal" , edit_goal_path(@goal) %>
+
+
+<% @goal_tasks.each do |task| %>
+	<h3><%= link_to task.title , goal_task_path(@goal,task.id) %></h3>
+	<p><%= task.description %></p>
+
+	<% if task.completed == false %>
+		<%= form_for [@goal,@goal_tasks.where(id: task.id).first] do |f| %>
+			<%= f.hidden_field :completed , :value => true %>
+			<%= f.submit "Completed" %>
+		<% end %>
+	<% else %>
+		<p>Completed!</p>
+	<% end %>
+
+<% end %>
 
 
