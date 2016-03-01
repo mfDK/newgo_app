@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :fb_post
   helper_method :get_posts
+  helper_method :fail_post
   # helper_method :days_until
 
   def get_posts
@@ -20,6 +21,12 @@ class ApplicationController < ActionController::Base
   	@graph = Koala::Facebook::API.new(session[:fb_session_token])
   	@profile = @graph.get_object("me")
   	@graph.put_connections("me","feed",message:"My #{@goal.title} was completed!")
+  end
+
+  def fail_post
+    @graph = Koala::Facebook::API.new(session[:fb_session_token])
+    @profile = @graph.get_object("me")
+    @graph.put_connections("me","feed",message:"I didn't hit my #{@goal.title} goal, I am a failure")
   end
 
   # def days_until

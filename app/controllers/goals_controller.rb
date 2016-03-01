@@ -46,6 +46,7 @@ class GoalsController < ApplicationController
   	# This is checking the post_array after all the statuses are push to see
   	# if the goal string is in the array.
   	@post_array_exist = @post_array.include? "My #{@goal.title} was completed!"
+    @fail_post_exist = @post_array.include? "I didn't hit my #{@goal.title} goal, I am a failure"
 
   	# goal is created --> goal.completed is false
   		# no fb status
@@ -75,6 +76,19 @@ class GoalsController < ApplicationController
   	# 	@goal.update(completed: false)
   	# 	@goal.save
   	# end
+
+    @now = Time.now.to_datetime
+    @end_date = @goal.end_date
+    if @fail_post_exist == false && @goal.completed == false && @now > @end_date
+      begin
+        fail_post
+      rescue Koala::Facebook::APIError => exc
+        flash[:notice] = "Already posted"
+      end
+    elsif @post_array_exists == true && goal.completed == false && @now > @end_date
+      flash[:alert] = "Goal was a fail"
+    end
+
   end
 
   def new

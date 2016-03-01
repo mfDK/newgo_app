@@ -1,0 +1,41 @@
+if the goal is not complete and the end date has passed
+	post a status update to the users facebook
+if the goal is complete
+	pots a status update - goal complete
+end
+
+
+if the goal is complete and end_date 
+
+
+
+@now > @end_date -- true
+	This means that the time now has passed the end_date
+@now < @end_date -- false
+	This means that the time now is before the end_date
+
+
+@now == @end_date -- true
+	This means that the time now is the exact same time
+	down to the very second
+@now == @end_date -- false
+	This means the the time now and the end date is not 
+	equal at all
+
+
+if @now > @end_date == true && goal.completed == true && the status exists
+	don't do anything
+elsif @now > @end_date == true && goal.completed == false && status doesnt exists
+	post status saying you a bitch
+else
+	don't do anything
+end
+
+
+if (the time now has passed the end date) & (the goal was not completed) & t(he status doesn't exists)
+	post the status saying that you did not complete the goal
+else
+	don't do anything
+	the other method of completed is the only
+	other option
+end

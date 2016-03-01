@@ -10,7 +10,7 @@
 
 <%= @goal.title %>
 <%= @goal.description %>
-<%= @goal.end_date %>
+<%= @goal.end_date.to_date %>
 <%= link_to "Edit Goal" , edit_goal_path(@goal) %>
 
 
@@ -29,3 +29,4 @@
 
 <%= @post_array %>
 <%= @post_array_exist %>
+<%= @fail_post_exist %>

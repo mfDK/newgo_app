@@ -7,14 +7,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<% if user_signed_in? %>
-	<%= link_to "Log Out" , destroy_user_session_path, method: :delete %>
-	<%= link_to "Home" , root_path %>
-	<h3>Current User Email: <%= current_user.email %> </h3>
-	<p id="notice"><%= notice %></p>
-<% else %>
-	<h4>User is not signed in</h4>
-<% end %>
+	<%= render "layouts/nav" %>
 
 <%= yield %>
 
