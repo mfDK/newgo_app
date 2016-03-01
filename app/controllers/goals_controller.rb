@@ -35,6 +35,35 @@ class GoalsController < ApplicationController
   			@goal.save
   		end
   	end
+
+  	# This is creating a new array that will have all of the statuses of the user signed in
+  	# the each method pushed the message as a string into the array
+  	@post_array = Array.new
+  	get_posts.each do |post|
+  		@post_array.push(post['message'])
+  	end
+
+  	# This is checking the post_array after all the statuses are push to see
+  	# if the goal string is in the array.
+  	@post_array_exist = @post_array.include? "My #{@goal.title} was completed!"
+
+  	# goal is created --> goal.completed is false
+  		# no fb status
+  	# goal tasks are created
+  		# no fb status
+  		# no goal.completed is still false
+  	# when all tasks are completed --> goal.complted true
+  		# create facebook status
+
+  	if @goal.completed == true && @post_array_exist == true
+  		flash[:alert] = "1st Condition"
+  	elsif @goal.completed == true 
+			begin
+  			fb_post
+  		rescue Koala::Facebook::APIError => exc
+  			flash[:alert] = "Already posted"
+  		end
+  	end
   	
   	## This problem with this logic is that when a new goal is created
   	## the main goal is automatically considered completed because there

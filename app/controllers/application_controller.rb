@@ -8,12 +8,18 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
 
   helper_method :fb_post
+  helper_method :get_posts
   # helper_method :days_until
+
+  def get_posts
+    @graph = Koala::Facebook::API.new(session[:fb_session_token])
+    @graph.get_connections("me","feed")
+  end
 
   def fb_post
   	@graph = Koala::Facebook::API.new(session[:fb_session_token])
   	@profile = @graph.get_object("me")
-  	@graph.put_connections("me","feed",message:"I posted mang")
+  	@graph.put_connections("me","feed",message:"My #{@goal.title} was completed!")
   end
 
   # def days_until

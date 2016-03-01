@@ -1,5 +1,7 @@
 <h1><%= @goal.title %></h1>
 
+<p><%= flash.alert %></p>
+
 <h4>There are <%= @num_tasks %> tasks for <%= @goal.title %> </h4>
 <h4>User: <%= current_user.email %> has completed <%= @complete_tasks %> tasks</h4>
 <h5><%= @left_tasks %> tasks are left</h5>
@@ -8,14 +10,13 @@
 
 <%= @goal.title %>
 <%= @goal.description %>
-<%= @goal.end_date.strftime("%m/%d/%Y") %>
+<%= @goal.end_date %>
 <%= link_to "Edit Goal" , edit_goal_path(@goal) %>
 
 
 <% @goal_tasks.each do |task| %>
 	<h3><%= link_to task.title , goal_task_path(@goal,task.id) %></h3>
 	<p><%= task.description %></p>
-
 	<% if task.completed == false %>
 		<%= form_for [@goal,@goal_tasks.where(id: task.id).first] do |f| %>
 			<%= f.hidden_field :completed , :value => true %>
@@ -24,7 +25,7 @@
 	<% else %>
 		<p>Completed!</p>
 	<% end %>
-
 <% end %>
 
-
+<%= @post_array %>
+<%= @post_array_exist %>
