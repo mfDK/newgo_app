@@ -5,11 +5,18 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+
+  <!-- GOOGLE FONT -->
+  <link href='https://fonts.googleapis.com/css?family=Quicksand:700' rel='stylesheet' type='text/css'>
+
+  <!-- FONT AWESOME -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 </head>
 <body>
 	<%= render "layouts/nav" %>
 
 <%= yield %>
-
+	
+	<%= render "layouts/footer" %>
 </body>
 </html>
