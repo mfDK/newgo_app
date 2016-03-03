@@ -85,7 +85,7 @@ class GoalsController < ApplicationController
       rescue Koala::Facebook::APIError => exc
         flash[:notice] = "Already posted"
       end
-    elsif @post_array_exists == true && goal.completed == false && @now > @end_date
+    elsif @post_array_exist == true && @goal.completed == false && @now > @end_date
       flash[:alert] = "Goal was a fail"
     end
 

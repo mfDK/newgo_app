@@ -5,6 +5,15 @@
 		<%= link_to "Edit Goal" , edit_goal_path(@goal) , :class => "edit-link" %>
 
 		<!-- <p><%= flash.alert %></p> -->
+		<% if @fail_post_exist == true && @goal.completed == false && @now > @end_date %>
+			<div id="fail-div">
+				<h1>Your goal was a fail. Check your Facebook...</h1>
+			</div>
+		<% elsif @goal.completed == true %>
+			<div id="success-div">
+				<h1>You completed your goal! Check your Facebook!</h1>
+			</div>
+		<% end %>
 
 		<h3>You have completed <%= @complete_tasks %> out of <%= @num_tasks %> tasks</h3>
 		
