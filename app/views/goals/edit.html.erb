@@ -1,11 +1,12 @@
-<p>Users should only be allowed to edit title and description. THE MOST IMPORTANT ASPECT IS THE END_DATE</p>
-
-
-<%= form_for @goal do |f| %>
-	<%= f.label :title %>
-	<%= f.text_field :title %>
-	<%= f.label :description %>
-	<%= f.text_area :description %>
-	<%= f.submit "Edit" %>
-<% end %>
-
+<div class="container">
+	<h1 class="new-title">EDIT GOAL</h1>
+	<div class="form-container">
+		<%= form_for @goal do |f| %>
+			<%= f.label :title , :class => "form-title" %><br>
+			<%= f.text_field :title , :class => "form-title-input" %><br>
+			<%= f.label :description , :class => "form-desc" %><br>
+			<%= f.text_area :description , :class => "form-desc-input" %><br>
+			<%= f.submit "Edit" , :class => "goal-submit" %>
+		<% end %>
+	</div>
+</div>

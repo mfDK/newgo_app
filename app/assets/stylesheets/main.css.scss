@@ -1,6 +1,13 @@
-$red: #ef6e6e;
+$red: #FFA9A7;
+$red-hover: #d18987;
 $blue: #76f0f7;
-$fext: #00A5A8;
+$fext: #28D6DE;
+$task-border: #5F89F2;
+$task-back: #A6F8FC;
+$complete-back: #A6FDAC;
+$light-green: #A6FDAC;
+$submit-hover: #95db99;
+$edit: #FF8E2C;
 
 body {
 	margin: 0;
@@ -57,19 +64,46 @@ nav {
 
 /* HOME/INDEX GOALS */
 
-.goal-box {
-	height: 30%;
-	width: 70%;
-	border: 1px solid black;
+.goal-container {
+	margin: 50px auto;
+	width: 80%;
+	height: 100%;
+	text-align: center;
+	#my-goal-box {
+		#my-goals {
+			text-transform: uppercase;
+		}
+		.create-goal {
+			text-decoration: none;
+			text-transform: uppercase;
+			border: 4px solid $blue;
+			background-color: $light-green;
+			padding: 10px;
+		}
+	}
+	.goal-box {
+		height: 30%;
+		width: 90%;
+		border: 8px solid $blue;
+		background-color: $light-green;
+		border-radius: 10px;
+		margin: 30px auto;
+	}
 }
-
 /* ################### */
 
 /* Login Root */
 #link-box {
-	margin-bottom: 10px;
 	width: 100%;
-	height: 80vh;
+	height: 90vh;
+	background: url('/assets/background.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+	#sign-box {
+		position: relative;
+		top: 50%;
+		text-align: center;
+	}
 }
 
 .field {
@@ -86,10 +120,202 @@ nav {
 	display: inline-block;
 }
 
+#fb-link {
+	background-color: #43609C;
+	text-transform: uppercase;
+	text-decoration: none;
+	color: #FFFFFF;
+	font-weight: 800;
+	font-size: 1.5em;
+	padding: 20px;
+}
+
 /* ################### */
 
+/* USER DASHBOARD CONTAINER */
 
+.container {
+	width: 100%;
+	height: 100%;
+}
 
+/* #################### */
+
+/* TASKS */
+
+#task-box {
+	text-align: center;
+	height: 100%;
+	width: 85%;
+	margin: 0 auto;
+	.edit-link {
+		text-decoration: none;
+		background-color: $edit;
+		border: 3px solid $blue;
+		border-radius: 6px;
+		padding: 8px;
+		color: white;
+		text-transform: uppercase;
+	}
+	.task-list {
+		height: 100vh;
+		overflow: auto;
+		.tasks {
+			border: 10px solid $task-border;
+			border-radius: 10px;
+			height: 20%;
+			width: 90%;
+			clear: both;
+			margin: 40px auto;
+			.task-info {
+				height: 100%;
+				width: 70%;
+				background-color: $task-back;
+				float: left;
+				#task-title {
+					.t-title {
+						.task-link {
+							text-decoration: none;
+							text-transform: uppercase;
+						}
+					}
+				}
+			}
+			.complete-button {
+				background-color: $complete-back;
+				height: 100%;
+				width: 30%;
+				float: right;
+				font-family: 'Quicksand', sans-serif;
+				form {
+					height: 100%;
+					width: 100%;
+					input[type=submit] {
+						color: blue;
+						width: 100%;
+						height: 100%;
+						background-color: $red;
+						font-size: 1.6em;
+						font-weight: 700;
+						text-transform: uppercase;
+						border: none;
+						&:hover {
+							background-color: $task-border;
+						}
+					}
+				}
+				p {
+					text-transform: uppercase;
+					margin-top: 60px;
+					font-size: 1.7em;
+				}
+			}
+			.clear {
+				clear: both;
+			}
+		}
+	}
+	h3 {
+		text-transform: uppercase;
+		margin-bottom: 30px;
+	}
+	#newlink {
+		border: 1px solid black;
+		.new-task-link {
+			text-transform: uppercase;
+			border: 5px solid $blue;
+			text-decoration: none;
+			background-color: $red;
+			padding: 17px;
+			color: white;
+			border-radius: 10px;
+			&:hover {
+				background-color: $red-hover;
+			}
+		}
+	}
+	.g-desc {
+		margin-top: 45px;
+		margin-bottom: 30px;
+		#g-desc-title {
+			margin-bottom: 0;
+		}
+	}
+	.g-end {
+		#end-date {
+			margin-bottom: 0;
+		}
+		#date-end {
+			margin-top: 2px;
+		}
+	}
+}
+
+#goal-title {
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 3em;
+}
+
+/* ################### */
+
+/* FORMS FOR GOALS AND TASKS */
+
+.new-title {
+	text-align: center;
+	margin-top: 50px;
+	margin-bottom: 0;
+	font-size: 4em;
+}
+
+.form-container {
+	width: 70%;
+	height: 90vh;
+	margin: 20px auto;
+	text-align: center;
+	form {
+		width: 100%;
+		height: 100%;
+		padding-top: 50px;
+		.form-title, .form-desc, .form-end {
+			text-transform: uppercase;
+			font-size: 2em;
+		}
+		.form-title-input {
+			height: 7%;
+			width: 70%;
+			margin-bottom: 20px;
+			font-size: 1.5em;
+		}
+		.form-desc-input {
+			height: 30%;
+			width: 70%;
+			margin-bottom: 20px;
+			font-size: 1.4em;
+		}
+		.form-end-date {
+			height: 5%;
+			width: 20%;
+			margin-bottom: 28px;
+			font-size: 0.9em;
+		}
+		.goal-submit {
+			background-color: $light-green;
+			border: 3px solid $task-border;
+			border-radius: 10px;
+			height: 80px;
+			width: 145px;
+			font-family: 'Quicksand', sans-serif;
+			font-size: 1em;
+			text-transform: uppercase;
+			&:hover {
+				background-color: #95db99;
+			}
+		}
+	}
+}
+
+/* ################### */
 
 /* FOOTER */
 
@@ -113,7 +339,7 @@ footer {
 				text-decoration: none;
 				text-transform: uppercase;
 				text-align: left;
-				color: $blue;
+				color: white;
 			}
 		}
 		#footer-left {
@@ -127,7 +353,7 @@ footer {
 		width: 100%;
 		text-align: center;
 		a {
-			color: $blue;
+			color: white;
 			margin: 0 25px;
 			i {
 				font-size: 50px;
@@ -138,7 +364,3 @@ footer {
 }
 
 /* ################### */
-
-#my-goals {
-	color: blue;
-}

@@ -1,32 +1,54 @@
-<h1><%= @goal.title %></h1>
+<div class="container">
+	<div id="task-box">
+		<h1 id="goal-title"><%= @goal.title %></h1>
 
-<p><%= flash.alert %></p>
+		<%= link_to "Edit Goal" , edit_goal_path(@goal) , :class => "edit-link" %>
 
-<h4>There are <%= @num_tasks %> tasks for <%= @goal.title %> </h4>
-<h4>User: <%= current_user.email %> has completed <%= @complete_tasks %> tasks</h4>
-<h5><%= @left_tasks %> tasks are left</h5>
+		<!-- <p><%= flash.alert %></p> -->
 
-<%= link_to "New Task" , new_goal_task_path(@goal) %>
+		<h3>You have completed <%= @complete_tasks %> out of <%= @num_tasks %> tasks</h3>
+		
+		<div class="g-desc">
+			<h3 id="g-desc-title">Description: </h3>
+			<%= @goal.description %>
+		</div>
+		<div class="g-end">
+			<h3 id="end-date">End Date: <%= @goal.end_date.to_date %></h3>
+		</div>
 
-<%= @goal.title %>
-<%= @goal.description %>
-<%= @goal.end_date.to_date %>
-<%= link_to "Edit Goal" , edit_goal_path(@goal) %>
+		<div id="newlink">
+			<div id="task-title-box"><h2 id="mytask-title">MY TASKS</h2></div>
+			<div id="side-button"><%= link_to "New Task" , new_goal_task_path(@goal) , :class => "new-task-link" %></div>
+		</div>
 
+		<div class="task-list">
+			<% @goal_tasks.each do |task| %>
+				<div class="tasks">
+					<div class="task-info">
+						<div id="task-title">
+							<h3 class="t-title"><%= link_to task.title , goal_task_path(@goal,task.id) , :class => "task-link" %></h3>
+						</div>
+						<p><%= task.description %></p>
+					</div>
+					<div class="complete-button">
+						<% if task.completed == false %>
+							<%= form_for [@goal,@goal_tasks.where(id: task.id).first] do |f| %>
+								<%= f.hidden_field :completed , :value => true %>
+								<%= f.submit "Complete" , :class => "submit-complete" %>
+							<% end %>
+						<% else %>
+							<p>Completed!</p>
+						<% end %>
+					</div>
+					<div class="clear">
+					</div>
+				</div>
+			<% end %>
+		</div>
 
-<% @goal_tasks.each do |task| %>
-	<h3><%= link_to task.title , goal_task_path(@goal,task.id) %></h3>
-	<p><%= task.description %></p>
-	<% if task.completed == false %>
-		<%= form_for [@goal,@goal_tasks.where(id: task.id).first] do |f| %>
-			<%= f.hidden_field :completed , :value => true %>
-			<%= f.submit "Completed" %>
-		<% end %>
-	<% else %>
-		<p>Completed!</p>
-	<% end %>
-<% end %>
+		<%= @post_array %>
+		<%= @post_array_exist %>
+		<%= @fail_post_exist %>
 
-<%= @post_array %>
-<%= @post_array_exist %>
-<%= @fail_post_exist %>
+	</div>
+</div>
