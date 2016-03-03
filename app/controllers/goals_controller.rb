@@ -45,7 +45,7 @@ class GoalsController < ApplicationController
 
   	# This is checking the post_array after all the statuses are push to see
   	# if the goal string is in the array.
-  	@post_array_exist = @post_array.include? "My #{@goal.title} was completed!"
+  	@post_array_exist = @post_array.include? "My goal to #{@goal.title} was completed!"
     @fail_post_exist = @post_array.include? "I didn't hit my #{@goal.title} goal, I am a failure"
 
   	# goal is created --> goal.completed is false
