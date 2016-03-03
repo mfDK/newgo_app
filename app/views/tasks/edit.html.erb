@@ -1,2 +1,12 @@
-<h1>Tasks#edit</h1>
-<p>Find me in app/views/tasks/edit.html.erb</p>
+<div class="container">
+	<h1 class="new-title">EDIT TASK</h1>
+	<div class="form-container">
+		<%= form_for [@goal,@task] do |f| %>
+			<%= f.label :title , "my task is to:", :class => "form-title" %><br>
+			<%= f.text_field :title , :class => "form-title-input" %><br>
+			<%= f.label :description , :class => "form-desc" %><br>
+			<%= f.text_area :description , :class => "form-desc-input" %><br>
+			<%= f.submit "Edit" , :class => "goal-submit" %>
+		<% end %>
+	</div>
+</div>

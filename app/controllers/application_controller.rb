@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
   def fb_post
   	@graph = Koala::Facebook::API.new(session[:fb_session_token])
   	@profile = @graph.get_object("me")
-  	@graph.put_connections("me","feed",message:"My #{@goal.title} was completed!")
+  	@graph.put_connections("me","feed",message:"My goal to #{@goal.title} was completed!")
   end
 
   def fail_post
