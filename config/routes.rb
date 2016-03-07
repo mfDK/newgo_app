@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+	root 'home#index'
+	
   devise_for :users , :controllers => { :omniauth_callbacks => "callbacks" }
   # this controller is set for the devise users because it is being used
   # for the facebook api through the callbacks_controller
@@ -10,5 +12,4 @@ Rails.application.routes.draw do
     resources :tasks
   end
 
-  root 'home#index'
 end
