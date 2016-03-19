@@ -40,12 +40,12 @@
 					</div>
 					<div class="complete-button">
 						<% if task.completed == false %>
-							<%= form_for [@goal,@goal_tasks.where(id: task.id).first] do |f| %>
+							<%= form_for([@goal,@goal_tasks.where(id: task.id).first], remote: true) do |f| %>
 								<%= f.hidden_field :completed , :value => true %>
 								<%= f.submit "Complete" , :class => "submit-complete" %>
 							<% end %>
 						<% else %>
-							<p>Completed!</p>
+							<%= render "goals/taskcompleted" %>
 						<% end %>
 					</div>
 					<div class="clear">

@@ -7,6 +7,12 @@ class GoalsController < ApplicationController
   	@goal = Goal.where(user_id: current_user, id: params[:id]).first
   	@goal_tasks = @goal.tasks
 
+    # This is where the AJAX request will happen
+      respond_to do |format|
+        format.html {}
+        format.js {}
+      end
+
   	# Get the count of how many tasks a certain goal has
   	@num_tasks = @goal_tasks.length
 
@@ -65,17 +71,6 @@ class GoalsController < ApplicationController
   			flash[:alert] = "Already posted"
   		end
   	end
-  	
-  	## This problem with this logic is that when a new goal is created
-  	## the main goal is automatically considered completed because there
-  	## are no tasks
-  	# if @left_tasks == 0
-  	# 	@goal.update(completed: true)
-  	# 	@goal.save
-  	# elsif @left_tasks > 0
-  	# 	@goal.update(completed: false)
-  	# 	@goal.save
-  	# end
 
     @now = Time.now.to_datetime
     @end_date = @goal.end_date
