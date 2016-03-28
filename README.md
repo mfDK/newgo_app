@@ -1,8 +1,6 @@
 # Newgo 
 #### Goal setting application with a social media incentive
 
-===
-
 * Ruby 2.2.1
 
 * System Dependencies 
