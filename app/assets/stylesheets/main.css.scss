@@ -9,6 +9,7 @@ $light-green: #A6FDAC;
 $submit-hover: #95db99;
 $edit: #FF8E2C;
 $edit-hover: #db8843;
+$light-green-hover: #8bd390;
 
 body {
 	margin: 0;
@@ -81,6 +82,9 @@ nav {
 			background-color: $light-green;
 			padding: 10px;
 			border-radius: 8px;
+			&:hover {
+				background-color: $light-green-hover;
+			}
 		}
 	}
 	.goal-box {
