@@ -1,0 +1,8 @@
+
+	<%= task.title %>
+	<%= task.description %>
+	<%= task.completed_at %>
+	<%= link_to "Edit Task" , edit_goal_task_path(@goal, task.id) %>
+	<% if task.completed_at.nil? %>
+		<%= link_to "Complete", complete_goal_task_path(@goal, task.id), action: :complete, remote: true, method: :patch , id: "task_#{task.id}"%>
+	<% end %>

@@ -3,19 +3,6 @@
 		<h1 id="goal-title"><%= @goal.title %></h1>
 
 		<%= link_to "Edit Goal" , edit_goal_path(@goal) , :class => "edit-link" %>
-
-		<!-- <p><%= flash.alert %></p> -->
-		<% if @fail_post_exist == true && @goal.completed == false && @now > @end_date %>
-			<div id="fail-div">
-				<h1 id="fail-title">Your goal was a fail. Check your Facebook...</h1>
-			</div>
-		<% elsif @goal.completed == true %>
-			<div id="success-div">
-				<h1 id="success-title">You completed your goal! Check your Facebook!</h1>
-			</div>
-		<% end %>
-
-		<h3>You have completed <%= @complete_tasks %> out of <%= @num_tasks %> tasks</h3>
 		
 		<div class="g-desc">
 			<h3 id="g-desc-title">Description: </h3>
@@ -27,32 +14,7 @@
 
 			<%= link_to "New Task" , new_goal_task_path(@goal) , :class => "new-task-link" %>
 
-		<div class="task-list">
-			<h1 id="my-task">MY TASKS</h1>
-			<% @goal_tasks.each do |task| %>
-				<div class="tasks">
-					<div class="task-info">
-						<div id="task-title">
-							<h3 class="t-title"><%= task.title %></h3>
-						</div>
-						<p><%= task.description %></p>
-						<%= link_to "EDIT TASK" , edit_goal_task_path(@goal,task.id) , :class => "edit-task-link" %>
-					</div>
-					<div class="complete-button">
-						<% if task.completed == false %>
-							<%= form_for([@goal,@goal_tasks.where(id: task.id).first], remote: true) do |f| %>
-								<%= f.hidden_field :completed , :value => true %>
-								<%= f.submit "Complete" , :class => "submit-complete" %>
-							<% end %>
-						<% else %>
-							<%= render "goals/taskcompleted" %>
-						<% end %>
-					</div>
-					<div class="clear">
-					</div>
-				</div>
-			<% end %>
-		</div>
+		<%= render @tasks %>
 
 		<!-- <%= @post_array %>
 		<%= @post_array_exist %>

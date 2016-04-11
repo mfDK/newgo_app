@@ -9,6 +9,15 @@ class TasksController < ApplicationController
   	@task = @goal.tasks.find(params[:id])
   end
 
+  def complete
+    @task = Task.find(params[:id])
+    @task.update_attribute(:completed_at, Time.zone.now)
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
   def new
   	@goal = Goal.find(params[:goal_id])
   	@task = @goal.tasks.new
@@ -36,7 +45,7 @@ class TasksController < ApplicationController
   	@task = @goal.tasks.find(params[:id])
   	@task.update(task_params)
   	@task.save
-  	redirect_to @goal
+    redirect_to @goal
   end
 
   def destroy
