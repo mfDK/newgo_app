@@ -9,6 +9,8 @@ class TasksController < ApplicationController
   	@task = @goal.tasks.find(params[:id])
   end
 
+  # this is a method that is used by the tasks listed in the _task.html.erb
+  # the link goes to this action
   def complete
     @task = Task.find(params[:id])
     @task.update_attribute(:completed_at, Time.zone.now)

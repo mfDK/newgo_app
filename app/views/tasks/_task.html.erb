@@ -1,5 +1,8 @@
+<!-- much like using an each loop, this partial goes through the @tasks variable where the parital is used
+in the goals show.html.erb -->
 
-	<%= task.title %>
+
+	<div id="#t-<%= task.id %>"><%= task.title %></div>
 	<%= task.description %>
 	<%= task.completed_at %>
 	<%= link_to "Edit Task" , edit_goal_task_path(@goal, task.id) %>

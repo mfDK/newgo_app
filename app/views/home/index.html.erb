@@ -10,7 +10,7 @@
 				<p><%= goal.description %></p>
 				<p>I want to accomplish this by: <%= goal.end_date%></p>
 				<%= link_to "Show Goal", goal_path(goal.id) , :class => "show-goal" %>
-				<% if goal.completed == true %>
+				<% if goal.completed_at.nil? == true %>
 					<p>GOAL ACCOMPLISHED!</p>
 				<% end %>
 			</div>

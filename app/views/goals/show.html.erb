@@ -13,8 +13,10 @@
 		</div>
 
 			<%= link_to "New Task" , new_goal_task_path(@goal) , :class => "new-task-link" %>
-
+		
+		
 		<%= render @tasks %>
+		<!-- This iterates through each task for a goal, this is in the goals_controller -->
 
 		<!-- <%= @post_array %>
 		<%= @post_array_exist %>
