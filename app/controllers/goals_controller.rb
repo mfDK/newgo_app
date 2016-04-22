@@ -36,6 +36,10 @@ class GoalsController < ApplicationController
   	# 	end
   	# end
 
+    @tasks_completed = @tasks.map { |task| task.completed_at.nil? }
+    # This is iterate through each task and see if each completed_at attribute 
+    # is nil? (false == completed & true == incomplete)
+
   	# This is creating a new array that will have all of the statuses of the user signed in
   	# the each method pushed the message as a string into the array
   	# @post_array = Array.new
