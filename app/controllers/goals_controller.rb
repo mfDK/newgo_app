@@ -28,11 +28,7 @@ class GoalsController < ApplicationController
     end
 
   	# This is creating a new array that will have all of the statuses of the user signed in
-  	# the each method pushed the message as a string into the array
-  	# @post_array = Array.new
-  	# get_posts.each do |post|
-  	# 	@post_array.push(post['message'])
-  	# end
+    @post_array = get_posts.map { |status| status['message'] }
 
   	# This is checking the post_array after all the statuses are push to see
   	# # if the goal string is in the array.
