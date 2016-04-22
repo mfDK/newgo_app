@@ -16,29 +16,16 @@ class GoalsController < ApplicationController
   	# # Gets the number of tasks left
   	# @left_tasks = @num_tasks - @complete_tasks
 
-  	# ## This is iterate through each goals tasks and the .all? method will
-  	# ## check just the completed attribute to check if they are all true.
-  	# @com_task = Array.new
-  	# # This creates an empty array 
-  	# @goal_tasks.each do |task|
-  	# 	@com_task.push(task.completed)
-  	# 	# through each iteration of tasks in the goal, the completed
-  	# 	# attribute is pushed to the @com_task array
-  	# 	if @com_task.all?
-  	# 		# This will check if the @com_task array has all true values meaning
-  	# 		# all the tasks of the specific goal are completed. If so then the 
-  	# 		# completed attribute of the GOAL will be set to true. 
-  	# 		@goal.update(completed: true)
-  	# 		@goal.save
-  	# 	else
-  	# 		@goal.update(completed: false)
-  	# 		@goal.save
-  	# 	end
-  	# end
-
-    @tasks_completed = @tasks.map { |task| task.completed_at.nil? }
+    @tasks_completed = @tasks.map { |task| !task.completed_at.nil? }
     # This is iterate through each task and see if each completed_at attribute 
-    # is nil? (false == completed & true == incomplete)
+    # is nil? (true == completed & false == incomplete)
+
+    # when a tasks are first created, all completed_at values will be true because they are nil
+    if @tasks_completed.any?
+      if @tasks_completed.all?
+        @goal.update_attribute(:completed_at, Time.zone.now)
+      end
+    end
 
   	# This is creating a new array that will have all of the statuses of the user signed in
   	# the each method pushed the message as a string into the array
