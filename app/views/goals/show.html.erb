@@ -3,6 +3,10 @@
 		<h1 id="goal-title"><%= @goal.title %></h1>
 
 		<%= link_to "Edit Goal" , edit_goal_path(@goal) , :class => "edit-link" %>
+
+		<div>
+			  <%= tasks_left %>
+		</div>
 		
 		<div class="g-desc">
 			<h3 id="g-desc-title">Description: </h3>

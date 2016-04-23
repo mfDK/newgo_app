@@ -7,15 +7,6 @@ class GoalsController < ApplicationController
   	@goal = Goal.find(params[:id])
   	@tasks = @goal.tasks
 
-  	# Get the count of how many tasks a certain goal has
-  	# @num_tasks = @goal_tasks.length
-
-  	# # get the count of how many tasks are completed for the goal
-  	# # @complete_tasks = @goal_tasks.where(completed:true).length
-
-  	# # Gets the number of tasks left
-  	# @left_tasks = @num_tasks - @complete_tasks
-
     @tasks_completed = @tasks.map { |task| !task.completed_at.nil? }
     # This is iterate through each task and see if each completed_at attribute 
     # is nil? (true == completed & false == incomplete)
@@ -32,38 +23,30 @@ class GoalsController < ApplicationController
 
   	# This is checking the post_array after all the statuses are push to see
   	# # if the goal string is in the array.
-  	# @post_array_exist = @post_array.include? "My goal to #{@goal.title} was completed!"
-   #  @fail_post_exist = @post_array.include? "I didn't hit my #{@goal.title} goal, I am a failure"
+  	@post_array_exist = @post_array.include? "My goal to #{@goal.title} was completed!"
+    @fail_post_exist = @post_array.include? "I didn't hit my #{@goal.title} goal, I am a failure"
 
-  	# goal is created --> goal.completed is false
-  		# no fb status
-  	# goal tasks are created
-  		# no fb status
-  		# no goal.completed is still false
-  	# when all tasks are completed --> goal.complted true
-  		# create facebook status
+  	if @goal.completed_at.nil? && @post_array_exist == true
+  		flash[:alert] = "1st Condition"
+  	elsif @goal.completed_at.nil? == false && @post_array_exist == false && @now < @end_date
+			begin
+  			fb_post
+  		rescue Koala::Facebook::APIError => exc
+  			flash[:alert] = "Already posted"
+  		end
+  	end
 
-  	# if @goal.completed == true && @post_array_exist == true
-  	# 	flash[:alert] = "1st Condition"
-  	# elsif @goal.completed == true 
-			# begin
-  	# 		fb_post
-  	# 	rescue Koala::Facebook::APIError => exc
-  	# 		flash[:alert] = "Already posted"
-  	# 	end
-  	# end
-
-   #  @now = Time.now.to_datetime
-   #  @end_date = @goal.end_date
-   #  if @fail_post_exist == false && @goal.completed == false && @now > @end_date
-   #    begin
-   #      fail_post
-   #    rescue Koala::Facebook::APIError => exc
-   #      flash[:notice] = "Already posted"
-   #    end
-   #  elsif @post_array_exist == true && @goal.completed == false && @now > @end_date
-   #    flash[:alert] = "Goal was a fail"
-   #  end
+    @now = Time.now.to_datetime
+    @end_date = @goal.end_date
+    if @fail_post_exist == false && @goal.completed_at.nil? && @now > @end_date
+      begin
+        fail_post
+      rescue Koala::Facebook::APIError => exc
+        flash[:notice] = "Already posted"
+      end
+    elsif @post_array_exist == true && @goal.completed_at.nil? == false && @now > @end_date
+      flash[:alert] = "Goal was a fail"
+    end
 
   end
 
