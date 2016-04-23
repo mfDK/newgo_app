@@ -9,6 +9,7 @@ $light-green: #A6FDAC;
 $submit-hover: #95db99;
 $edit: #FF8E2C;
 $edit-hover: #db8843;
+$light-green-hover: #8bd390;
 
 body {
 	margin: 0;
@@ -81,6 +82,9 @@ nav {
 			background-color: $light-green;
 			padding: 10px;
 			border-radius: 8px;
+			&:hover {
+				background-color: $light-green-hover;
+			}
 		}
 	}
 	.goal-box {
@@ -181,9 +185,9 @@ nav {
 	.task-list {
 		height: 100vh;
 		overflow: auto;
-		padding-top: 15px;
+		margin-bottom: 20px;
 		#my-task {
-			margin-top: 30px;
+			margin-top: 20px;
 			margin-bottom: 0;
 			font-size: 2.5em;
 		}
@@ -256,16 +260,20 @@ nav {
 		text-transform: uppercase;
 		margin-bottom: 30px;
 	}
-	.new-task-link {
-		text-transform: uppercase;
-		border: 5px solid $blue;
-		text-decoration: none;
-		background-color: $red;
-		padding: 17px;
-		color: white;
-		border-radius: 10px;
-		&:hover {
-			background-color: $red-hover;
+	#new-task-div {
+		height: 50px;
+		width: 100%;
+		.new-task-link {
+			text-transform: uppercase;
+			border: 5px solid $blue;
+			text-decoration: none;
+			background-color: $red;
+			padding: 17px;
+			color: white;
+			border-radius: 10px;
+			&:hover {
+				background-color: $red-hover;
+			}
 		}
 	}
 	.g-desc {
