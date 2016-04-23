@@ -4,88 +4,47 @@ class GoalsController < ApplicationController
   end
 
   def show
-  	@goal = Goal.where(user_id: current_user, id: params[:id]).first
-  	@goal_tasks = @goal.tasks
+  	@goal = Goal.find(params[:id])
+  	@tasks = @goal.tasks
 
-  	# Get the count of how many tasks a certain goal has
-  	@num_tasks = @goal_tasks.length
+    @tasks_completed = @tasks.map { |task| !task.completed_at.nil? }
+    # This is iterate through each task and see if each completed_at attribute 
+    # is nil? (true == completed & false == incomplete)
 
-  	# get the count of how many tasks are completed for the goal
-  	@complete_tasks = @goal_tasks.where(completed:true).length
-
-  	# Gets the number of tasks left
-  	@left_tasks = @num_tasks - @complete_tasks
-
-  	## This is iterate through each goals tasks and the .all? method will
-  	## check just the completed attribute to check if they are all true.
-  	@com_task = Array.new
-  	# This creates an empty array 
-  	@goal_tasks.each do |task|
-  		@com_task.push(task.completed)
-  		# through each iteration of tasks in the goal, the completed
-  		# attribute is pushed to the @com_task array
-  		if @com_task.all?
-  			# This will check if the @com_task array has all true values meaning
-  			# all the tasks of the specific goal are completed. If so then the 
-  			# completed attribute of the GOAL will be set to true. 
-  			@goal.update(completed: true)
-  			@goal.save
-  		else
-  			@goal.update(completed: false)
-  			@goal.save
-  		end
-  	end
+    # when a tasks are first created, all completed_at values will be true because they are nil
+    if @tasks_completed.any?
+      if @tasks_completed.all?
+        @goal.update_attribute(:completed_at, Time.zone.now)
+      end
+    end
 
   	# This is creating a new array that will have all of the statuses of the user signed in
-  	# the each method pushed the message as a string into the array
-  	@post_array = Array.new
-  	get_posts.each do |post|
-  		@post_array.push(post['message'])
-  	end
+    @post_array = get_posts.map { |status| status['message'] }
 
   	# This is checking the post_array after all the statuses are push to see
-  	# if the goal string is in the array.
+  	# # if the goal string is in the array.
   	@post_array_exist = @post_array.include? "My goal to #{@goal.title} was completed!"
     @fail_post_exist = @post_array.include? "I didn't hit my #{@goal.title} goal, I am a failure"
 
-  	# goal is created --> goal.completed is false
-  		# no fb status
-  	# goal tasks are created
-  		# no fb status
-  		# no goal.completed is still false
-  	# when all tasks are completed --> goal.complted true
-  		# create facebook status
-
-  	if @goal.completed == true && @post_array_exist == true
+  	if @goal.completed_at.nil? && @post_array_exist == true
   		flash[:alert] = "1st Condition"
-  	elsif @goal.completed == true 
+  	elsif @goal.completed_at.nil? == false && @post_array_exist == false && @now < @end_date
 			begin
   			fb_post
   		rescue Koala::Facebook::APIError => exc
   			flash[:alert] = "Already posted"
   		end
   	end
-  	
-  	## This problem with this logic is that when a new goal is created
-  	## the main goal is automatically considered completed because there
-  	## are no tasks
-  	# if @left_tasks == 0
-  	# 	@goal.update(completed: true)
-  	# 	@goal.save
-  	# elsif @left_tasks > 0
-  	# 	@goal.update(completed: false)
-  	# 	@goal.save
-  	# end
 
     @now = Time.now.to_datetime
     @end_date = @goal.end_date
-    if @fail_post_exist == false && @goal.completed == false && @now > @end_date
+    if @fail_post_exist == false && @goal.completed_at.nil? && @now > @end_date
       begin
         fail_post
       rescue Koala::Facebook::APIError => exc
         flash[:notice] = "Already posted"
       end
-    elsif @post_array_exist == true && @goal.completed == false && @now > @end_date
+    elsif @post_array_exist == true && @goal.completed_at.nil? == false && @now > @end_date
       flash[:alert] = "Goal was a fail"
     end
 
@@ -107,6 +66,8 @@ class GoalsController < ApplicationController
 
   def edit
   	@goal = Goal.where(user_id: current_user, id: params[:id]).first
+    # Through a form for, update an existing task that belong to the goal
+    @goal_tasks = @goal.tasks
   end
 
   def update

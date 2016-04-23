@@ -9,7 +9,11 @@ Rails.application.routes.draw do
   # user sign_in and sessions as well. 
 
   resources :goals do
-    resources :tasks
+    resources :tasks do
+      member do 
+        patch :complete
+      end
+    end
   end
 
 end
