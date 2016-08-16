@@ -18,41 +18,11 @@
 		
 		<div id="new-task-div">
 			<%= link_to "New Task" , new_goal_task_path(@goal) , :class => "new-task-link" %>
-<<<<<<< HEAD
-		
+
 		
 		<%= render @tasks %>
 		<!-- This iterates through each task for a goal, this is in the goals_controller -->
-=======
-		</div>
 
-		<div class="task-list">
-			<h1 id="my-task">MY TASKS</h1>
-			<% @goal_tasks.each do |task| %>
-				<div class="tasks">
-					<div class="task-info">
-						<div id="task-title">
-							<h3 class="t-title"><%= task.title %></h3>
-						</div>
-						<p><%= task.description %></p>
-						<%= link_to "EDIT TASK" , edit_goal_task_path(@goal,task.id) , :class => "edit-task-link" %>
-					</div>
-					<div class="complete-button">
-						<% if task.completed == false %>
-							<%= form_for [@goal,@goal_tasks.where(id: task.id).first] do |f| %>
-								<%= f.hidden_field :completed , :value => true %>
-								<%= f.submit "Complete" , :class => "submit-complete" %>
-							<% end %>
-						<% else %>
-							<p>Completed!</p>
-						<% end %>
-					</div>
-					<div class="clear">
-					</div>
-				</div>
-			<% end %>
-		</div>
->>>>>>> 9e3cb4b1c19c986a887a557dcbee2408670e73c6
 
 		<!-- <%= @post_array %>
 		<%= @post_array_exist %>
