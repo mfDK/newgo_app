@@ -266,5 +266,6 @@ Devise.setup do |config|
   # This is used to configure omniauth with the provider Facebook with the
   # App ID and App Secret
   # The scope is setting the permissions and what the app is able to pull and write to from Facebook
-  config.omniauth :facebook , ENV['FACEBOOK_APP_ID'] , ENV['FACEBOOK_APP_SECRET'] , :scope => 'email,publish_actions'
+  # check "Permissions Reference - Facebook Login" for list of permissions
+  config.omniauth :facebook , ENV['FACEBOOK_APP_ID'] , ENV['FACEBOOK_APP_SECRET'] , :scope => 'email,public_profile,publish_actions'
 end
