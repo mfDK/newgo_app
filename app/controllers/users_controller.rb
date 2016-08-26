@@ -4,5 +4,7 @@ class UsersController < ApplicationController
   end
 
   def show
+  	@user = User.find(params[:id])
+  	@my_profile_pic = my_pic
   end
 end
