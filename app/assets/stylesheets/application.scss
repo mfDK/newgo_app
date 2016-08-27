@@ -1,0 +1,14 @@
+// Custom bootstrap variables must be set or imported before bootstrap itself.
+@import "bootstrap";
+
+// Navbar
+.navbar {
+	background-color: #b3fcfa;
+	.nav-pills {
+
+	}
+	.navbar-brand {
+		height: 50px;
+		width: 100px;
+	}
+}

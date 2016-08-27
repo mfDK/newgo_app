@@ -6,5 +6,6 @@ class UsersController < ApplicationController
   def show
   	@user = User.find(params[:id])
   	@my_profile_pic = my_pic
+  	@my_user = fb_user_object
   end
 end

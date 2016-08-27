@@ -11,12 +11,17 @@ class ApplicationController < ActionController::Base
   helper_method :get_posts
   helper_method :fail_post
   # helper_method :days_until
-
   helper_method :my_pic
+  helper_method :fb_user_object
 
   def my_pic
     @graph_pic = Koala::Facebook::API.new(session[:fb_session_token])
     @picture = @graph_pic.get_picture("me")
+  end
+
+  def fb_user_object
+    @graph = Koala::Facebook::API.new(session[:fb_session_token])
+    @user_object = @graph.get_object("me")
   end
 
   def get_posts

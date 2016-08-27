@@ -1,12 +1,10 @@
-<nav>
-	<div id="logo">
-		<img src="<%= image_path('logo.png') %>">
-	</div>
-	<ul>
-		<li><%= link_to "Home" , root_path %></li>
+<nav class="navbar navbar-light">
+	<a class="navbar-brand" href="#"><img class="navbar-brand" src="<%= image_path('logo.png') %>"></a>
+	<ul class="nav navbar-nav nav-pills pull-right">
+		<li class="nav-item"><%= link_to "Home" , root_path, class: "nav-link" %></li>
 		<% if user_signed_in? %>
-			<li><%= link_to "My Profile", user_path(current_user) %></li>
-			<li><%= link_to "Log Out" , destroy_user_session_path, method: :delete %></li>
+			<li class="nav-item"><%= link_to "My Profile", user_path(current_user), class: "nav-link" %></li>
+			<li class="nav-item"><%= link_to "Log Out" , destroy_user_session_path, method: :delete, class: "nav-link" %></li>
 		<% end %>
 	</ul>
 </nav>
