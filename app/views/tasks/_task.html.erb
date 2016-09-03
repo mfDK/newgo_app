@@ -1,11 +1,14 @@
 <!-- much like using an each loop, this partial goes through the @tasks variable where the parital is used
 in the goals show.html.erb -->
 
-
-	<div id="#t-<%= task.id %>"><%= task.title %></div>
-	<%= task.description %>
-	<%= task.completed_at %>
-	<%= link_to "Edit Task" , edit_goal_task_path(@goal, task.id) %>
-	<% if task.completed_at.nil? %>
+<div class="card col-md-4 offset-md-4">
+	<div class="card-block">
+		<h3 id="#t-<%= task.id %>"><%= task.title %></h3>
+		<h6 class="task-description"><%= task.description %></h6>
+		<%= task.completed_at %>
+		<%= link_to "Edit Task" , edit_goal_task_path(@goal, task.id) %>
+		<% if task.completed_at.nil? %>
 		<%= link_to "Complete", complete_goal_task_path(@goal, task.id), action: :complete, remote: true, method: :patch , id: "task_#{task.id}"%>
 	<% end %>
+	</div>
+</div>

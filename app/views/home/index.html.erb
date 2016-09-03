@@ -5,20 +5,27 @@
 			<%= button_to "Create New Goal" , new_goal_path , :class => "btn btn-info", :method => :get %>
 		</div>
 		<% @goals.each do |goal| %>
-
-			<div class="card">
-				<img src="" class="card-img-top" alt="caps">
+		<div class="container">
+			<div class="card card-block col-xs-6 offset-xs-3">
 				<div class="card-block">
 					<h2 class="card-title"><%= goal.title %></h2>
 					<p class="card-text"><%= goal.description %></p>
 					<!-- <p>I want to accomplish this by: <%= goal.end_date%></p> -->
 					<%= button_to "Show Goal", goal_path(goal.id) , :class => "btn btn-primary", :method => :get %>
-					<% if goal.completed_at.nil? == true %>
+					<% if !goal.completed_at.nil? == true %>
 						<p>GOAL ACCOMPLISHED!</p>
 					<% end %>
 				</div>
 			</div>
-
+		</div>
 		<% end %>
+	</div>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-6 offset-md-3">
+			<h1 class="dash-goals">Goals</h1>
+		</div>
 	</div>
 </div>
