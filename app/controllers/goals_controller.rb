@@ -1,6 +1,6 @@
 class GoalsController < ApplicationController
   def index
-  	@goals = Goal.where(user_id: current_user)
+  	@goals = Goal.where(user_id: current_user).reverse
   end
 
   def show
