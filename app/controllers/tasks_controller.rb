@@ -14,15 +14,6 @@ class TasksController < ApplicationController
   def complete
     @task = Task.find(params[:id])
     @task.update_attribute(:completed_at, Time.zone.now)
-    @goal = Goal.find(params[:id])
-    @my_tasks = @goal.tasks 
-
-    @completed_tasks = @my_tasks.map { |completed| completed.completed_at }
-
-    if @completed_tasks.all?
-      @goal.update_attribute(:completed_at, Time.zone.now)
-    end
-    
     respond_to do |format|
       format.html
       format.js

@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 ruby '2.2.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -17,6 +17,8 @@ gem 'devise', '~> 3.5', '>= 3.5.6'
 gem 'omniauth', '~> 1.3', '>= 1.3.1'
 gem 'omniauth-facebook', '~> 3.0'
 gem 'omniauth-twitter', '~> 1.2', '>= 1.2.1'
+
+gem 'rspec', '~> 3.5'
 
 gem 'bootstrap', '~> 4.0.0.alpha3.1'
 
