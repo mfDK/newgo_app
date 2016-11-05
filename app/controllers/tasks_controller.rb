@@ -29,6 +29,8 @@ class TasksController < ApplicationController
     end
   end
 
+  # This is a comment to git
+
   def new
   	@goal = Goal.find(params[:goal_id])
   	@task = @goal.tasks.new
