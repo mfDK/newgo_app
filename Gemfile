@@ -18,6 +18,8 @@ gem 'omniauth', '~> 1.3', '>= 1.3.1'
 gem 'omniauth-facebook', '~> 3.0'
 gem 'omniauth-twitter', '~> 1.2', '>= 1.2.1'
 
+gem 'bootstrap', '~> 4.0.0.alpha3.1'
+
 gem 'koala', '~> 2.2'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
