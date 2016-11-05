@@ -11,6 +11,4 @@ class Goal < ActiveRecord::Base
   # 	end
   # end
 
-  
-
 end
