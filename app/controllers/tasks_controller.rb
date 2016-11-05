@@ -13,9 +13,9 @@ class TasksController < ApplicationController
   # the link goes to this action
   def complete
     @task = Task.find(params[:id])
+    @goal = Task.find(params[:goal_id])
     @task.update_attribute(:completed_at, Time.zone.now)
-    @goal = Goal.find(params[:id])
-    @my_tasks = @goal.tasks 
+    @my_tasks = Goal.find(params[:goal_id]).tasks
 
     @completed_tasks = @my_tasks.map { |completed| completed.completed_at }
 
@@ -44,7 +44,7 @@ class TasksController < ApplicationController
   		redirect_to @goal
   	else
   		flash[:alert] = "Your Task has not been created"
-  		redirect_to new_goal_task_path
+  		render "new"
   	end
   end
 
