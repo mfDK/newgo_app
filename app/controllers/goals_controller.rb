@@ -9,17 +9,6 @@ class GoalsController < ApplicationController
     @now = Time.now.to_datetime
     @end_date = @goal.end_date
 
-    @tasks_completed = @tasks.map { |task| !task.completed_at.nil? }
-    # This is iterate through each task and see if each completed_at attribute 
-    # is nil? (true == completed & false == incomplete)
-
-    # when a tasks are first created, all completed_at values will be true because they are nil
-    if @tasks_completed.any?
-      if @tasks_completed.all?
-        @goal.update_attribute(:completed_at, Time.zone.now)
-      end
-    end
-
   	# This is creating a new array that will have all of the statuses of the user signed in
     @post_array = get_posts.map { |status| status['message'] }
 

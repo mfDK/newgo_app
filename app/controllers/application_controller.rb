@@ -41,17 +41,4 @@ class ApplicationController < ActionController::Base
     @graph.put_connections("me","feed",message:"I didn't hit my #{@goal.title} goal, I am a failure")
   end
 
-  # def days_until
-  # 	@goal = Goal.find(params[:id])
-  # 	@goal_date = @goal.end_date
-  # 	@gol_date = @goal_date.strftime("%m/%d/%Y")
-  # 	@now = Time.now.strftime("%m/%d/%Y")
-
-  # 	if @gol_date == @now
-  # 		flash[:notice] = "End date"
-  # 	else
-  # 		flash[:alert] = "Nah son"
-  # 	end
-
-  # end
 end
