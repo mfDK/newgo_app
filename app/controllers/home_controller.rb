@@ -4,5 +4,6 @@ class HomeController < ApplicationController
   	# I want to see if this works or not
 
   	@test = "Hello I am Working"
+  	@test_branch = "I am the test branch"
   end
 end
