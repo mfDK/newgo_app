@@ -1,10 +1,11 @@
 class GoalsController < ApplicationController
+  before_action :set_goal, only: [:show ]
+
   def index
   	@goals = Goal.where(user_id: current_user).reverse
   end
 
   def show
-  	@goal = Goal.find(params[:id])
   	@tasks = @goal.tasks
     @now = Time.now.to_datetime
     @end_date = @goal.end_date
@@ -74,6 +75,10 @@ class GoalsController < ApplicationController
   end
 
   private 
+
+  def set_goal
+    @goal = Goal.find(params[:id])
+  end
 
  	def goal_params
  		params.require(:goal).permit(:title,:description,:end_date,:completed)
