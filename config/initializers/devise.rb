@@ -239,6 +239,9 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
+  config.omniauth :facebook, ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SECRET'],
+                  scope: 'email,public_profile,publish_actions',
+                  callback_url: "http://localhost:3000/users/auth/facebook/callback"
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
@@ -262,10 +265,4 @@ Devise.setup do |config|
   # When using OmniAuth, Devise cannot automatically set OmniAuth path,
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
-
-  # This is used to configure omniauth with the provider Facebook with the
-  # App ID and App Secret
-  # The scope is setting the permissions and what the app is able to pull and write to from Facebook
-  # check "Permissions Reference - Facebook Login" for list of permissions
-  config.omniauth :facebook , ENV['FACEBOOK_APP_ID'] , ENV['FACEBOOK_APP_SECRET'] , :scope => 'email,public_profile,publish_actions'
 end

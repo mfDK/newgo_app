@@ -3,9 +3,9 @@ class CallbacksController < Devise::OmniauthCallbacksController
 	# this method is used for the facebook api for logins
 	def facebook
 		@user = User.from_omniauth(request.env["omniauth.auth"])
-		# when a user successfully signs in, he is given a omniauth 
+		# when a user successfully signs in, he is given a omniauth
 		# authentication hash. The @user instance variable finds
-		# this user through the signin request and sets it to the 
+		# this user through the signin request and sets it to the
 		# @user instance variable
 
 		if @user.persisted?

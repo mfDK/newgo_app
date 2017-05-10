@@ -15,8 +15,7 @@ gem 'coffee-rails', '~> 4.1.0'
 # gem 'therubyracer', platforms: :ruby
 gem 'devise', '~> 3.5', '>= 3.5.6'
 gem 'omniauth', '~> 1.3', '>= 1.3.1'
-gem 'omniauth-facebook', '~> 3.0'
-gem 'omniauth-twitter', '~> 1.2', '>= 1.2.1'
+gem 'omniauth-facebook', '~> 4.0'
 
 gem 'bootstrap', '~> 4.0.0.alpha3.1'
 
@@ -55,5 +54,4 @@ group :development do
   gem 'spring'
 end
 
-gem 'rails_12factor' , group: :production 
-
+gem 'rails_12factor' , group: :production
