@@ -240,8 +240,7 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   config.omniauth :facebook, ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SECRET'],
-                  scope: 'email,public_profile,publish_actions',
-                  callback_url: "https://salty-woodland-33929.herokuapp.com/users/auth/facebook/callback"
+                  scope: 'email,public_profile,publish_actions'
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
