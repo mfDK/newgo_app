@@ -1,16 +1,18 @@
-# Newgo 
-#### Goal setting application with a social media incentive
+# Newgo
+Goal setting application that allows users to track their progress and share it on social media.
 
-* Ruby 2.2.1
+**Change to API ONLY**
 
-* System Dependencies 
+```ruby
+ruby 2.4.1
+rails 4.2.8
+```
 
-* Configuration Bundle Install
-
-* Database Creation with PostgreSQL running rake db:create & rake db:migrate
-
-* Designed to help users set and achieve goals
-
-* Login and Authentication handled by the **Devise**, **OmniAuth**, **OmniAuth-Facebook** gems
-
-* **Facebook Graph API** and **Koala gem** to post to users Facebook Account 
+## Install
+```
+$ git clone https://github.com/mfDK/newgo_app.git
+$ cd newgo_app
+$ rake db:create
+$ rake db:migrate
+$ rails s
+```
