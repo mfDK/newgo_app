@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
 	root 'home#index'
 
+  get '/dashboard', to: 'home#dashboard'
+
   devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
   # this controller is set for the devise users because it is being used
   # for the facebook api through the callbacks_controller

@@ -1,10 +1,25 @@
-<div class="container">
-	<div class="goal-container">
-		<div id="my-goal-box">
-			<h1 id="my-goals">Goals</h1>
-			<%= button_to "Create New Goal" , new_goal_path , :class => "btn btn-info", :method => :get %>
-		</div>
-
-		<%= render "goals/goals" %>
-	</div>
+<div class="container col-lg-3">
+    <div class="card text-center">
+      <div class="card-header">
+        User Login
+      </div>
+      <div class="card-block">
+          <%= form_for(:user, :url => session_path(:user)) do |f| %>
+            <%= f.text_field :email, class: "form-control", placeholder: "Enter E-mail"%>
+            <%= f.password_field :password, class: "form-control", placeholder: "Enter Password" %>
+            <div class="form-check">
+              <label class="form-check-label">
+                <%= f.check_box :remember_me, class: "form-check-input" %>
+                Remember Me
+              </label>
+            </div>
+            <%= f.submit 'Sign in', class: "btn btn-primary" %>
+          <% end %>
+          <%= link_to "Forgot your password?", new_password_path(:user) %>
+          <%= link_to "Register", new_user_registration_path() %>
+      </div>
+      <div class="card-footer text-muted">
+        Last Login: 2 Days Ago
+      </div>
+    </div>
 </div>
